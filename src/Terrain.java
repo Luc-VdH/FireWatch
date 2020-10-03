@@ -6,6 +6,7 @@ This class represents a terrain modeled by a grid of tempVals s.
 
 //package FlowSkeleton;
 
+import javax.imageio.ImageIO;
 import java.io.File;
 import java.awt.image.*;
 import java.awt.Color;
@@ -23,6 +24,7 @@ public class Terrain {
 	int dimy = 900;// data dimensions
 	BufferedImage img; // greyscale image for displaying the terrain top-down
 	private float [][] grey = new float[dimx][dimy];
+	File world;
 
 	ArrayList<Integer> permute;	// permuted list of integers in range [0, dimx*dimy)
 	
@@ -77,7 +79,16 @@ Converts and stores greyscale values of each tempVals  point and popualtes image
 	void deriveImage()
 	{
 
-		img = new BufferedImage(dimx, dimy, BufferedImage.TYPE_INT_ARGB);
+		//img = new BufferedImage(dimx, dimy, BufferedImage.TYPE_INT_ARGB);
+		img = null;
+		try{
+			img = ImageIO.read(new File("src/input/World.png"));
+
+		}catch (IOException e){
+			System.out.println("file error");
+		}
+		System.out.println(img.getHeight());
+		System.out.println(img.getWidth());
 		float maxh = -10000.0f, minh = 10000.0f;
 		
 		// determine range of tempVals s
@@ -181,7 +192,10 @@ Gets a 2D point in the grid from a point in the permutes list
 Reads a data file to optain grid of tempVals s
 @param fileName name of file to be read.        
 */
-	void readData(String fileName){
+	void readData(String fileName, String wName){
+		world = new File(wName);
+
+
 		double x = 0;
 		double y = 0;
 		int intX = 0;

@@ -16,7 +16,7 @@ import java.util.concurrent.ForkJoinPool;
 public class FirePanel extends JPanel implements Runnable{
 	Terrain land;
 	
-	static JLabel out = new JLabel("Timestep = 0");
+
 	
 	//private AtomicInteger step = new AtomicInteger(0);
 	Water [][] wArr;
@@ -72,11 +72,7 @@ public class FirePanel extends JPanel implements Runnable{
 		while(keepRunning.get()){
 			//super.add(output);
 			if(paused.get() == false){
-				SwingUtilities.invokeLater(new Runnable(){
-					public void run(){	
-						out.setText("Timestep = " + step.getAndIncrement());
-					}	
-				}); 
+
 				
 				FlowThread f = new FlowThread(land, wArr, 0, land.dim());
 				ForkJoinPool.commonPool().invoke(f);
