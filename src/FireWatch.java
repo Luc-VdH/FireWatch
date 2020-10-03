@@ -103,7 +103,7 @@ Main method used to run the program, takes the name of the file containing the g
 				
 		// landscape information from file supplied as argument
 		// 
-		landdata.readData("src/input/MOP02J-20200322-L2V18.0.3.csv", "src/input/World.jpg");
+		landdata.readData("src/input/output.csv", "src/input/World.jpg");
 		
 		frameX = landdata.getDimX();
 		frameY = landdata.getDimY();

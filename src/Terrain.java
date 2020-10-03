@@ -6,6 +6,8 @@ This class represents a terrain modeled by a grid of tempVals s.
 
 //package FlowSkeleton;
 
+
+
 import javax.imageio.ImageIO;
 import java.io.File;
 import java.awt.image.*;
@@ -87,31 +89,38 @@ Converts and stores greyscale values of each tempVals  point and popualtes image
 		}catch (IOException e){
 			System.out.println("file error");
 		}
-		System.out.println(img.getHeight());
-		System.out.println(img.getWidth());
-		float maxh = -10000.0f, minh = 10000.0f;
-		
-		// determine range of tempVals s
-		for(int x=0; x < dimx; x++)
-			for(int y=0; y < dimy; y++) {
-				float h = tempVals [x][y];
-				if(h > maxh)
-					maxh = h;
-				if(h < minh)
-					minh = h;
-			}
+		//System.out.println(img.getHeight());
+		//System.out.println(img.getWidth());
+//		float maxh = -10000.0f, minh = 10000.0f;
+//
+//		// determine range of tempVals s
+//		for(int x=0; x < dimx; x++)
+//			for(int y=0; y < dimy; y++) {
+//				float h = tempVals [x][y];
+//				if(h > maxh)
+//					maxh = h;
+//				if(h < minh)
+//					minh = h;
+//			}
 		
 		for(int x=0; x < dimx; x++)
 			for(int y=0; y < dimy; y++) {
 				 	
 				// find normalized tempVals  value in range
-				float val = (tempVals [x][y] - minh) / (maxh - minh);
-				grey[x][y] = val;
-				if(val != 0) {
-					Color col = new Color(val, 0, 0);
-					img.setRGB(x, y, col.getRGB());
+				//float val = (tempVals [x][y] - minh) / (maxh - minh);
+				float val = tempVals[x][y];
+
+				//System.out.println(val);
+
+				Color c = new Color(img.getRGB(x,y));
+
+				if((c.getRed() > 50 && c.getGreen() > 100 && c.getBlue() < 200)) {
+
+					if (val != 0.0f) {
+						Color col = new Color(val, 0, 0);
+						img.setRGB(x, y, col.getRGB());
+					}
 				}
-				 	
 			}
 			
 		
@@ -194,53 +203,17 @@ Reads a data file to optain grid of tempVals s
 */
 	void readData(String fileName, String wName){
 		world = new File(wName);
+		boolean [] data = {true, true};
+		DataProcessing dp = new DataProcessing(fileName, data);
+		dp.findHotspots();
 
-
-		double x = 0;
-		double y = 0;
-		int intX = 0;
-		int intY = 0;
-		try{ 
-			Scanner sc = new Scanner(new File(fileName));
-			
-			// read grid dimensions
-			// x and y correpond to columns and rows, respectively.
-			// Using image coordinate system where top left is (0, 0).
-
-			
-			// populate tempVals  grid
-			tempVals = new float[dimx][dimy];
-			sc.nextLine();
-			
-
-			while (sc.hasNext()){
-				String [] scLine = sc.nextLine().split(",");
-				y = Double.parseDouble(scLine[0]);
-				y = y + 90;
-				intY = (int)(y*5);
-				x = Double.parseDouble(scLine[1]);
-				x = x + 180;
-				intX = (int)(x*5);
-				//System.out.println(scLine[13]);
-				tempVals[intX][intY] = Float.parseFloat(scLine[13]);
-
-			}
-				
-			sc.close(); 
+		tempVals = dp.hotspots;
 			
 			// create randomly permuted list of indices for traversal 
 			genPermute(); 
 			
 			// generate greyscale tempVals field image
 			deriveImage();
-		} 
-		catch (IOException e){ 
-			System.out.println("Unable to open input file "+fileName);
-			e.printStackTrace();
-		}
-		catch (java.util.InputMismatchException e){ 
-			System.out.println("Malformed input file "+fileName);
-			e.printStackTrace();
-		}
+
 	}
 }
