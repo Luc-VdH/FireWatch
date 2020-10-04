@@ -12,7 +12,12 @@ The argument requirements are as follows: <inputfile> <true/false for CO data> <
 Example: java FireWatch src/input/output.csv true true
 
 Note that the supplied data must has temperature in Kelvin and CO should be dimensionless. 
-
+### How to run example demo
+1. Clone the repo
+2. In the root folder run 
+javac src/*.java
+3. Run 
+java -cp src FireWatch src/input/output.csv true true
 #### Runtime
 When run the user will be shown a world map with red pixels representing "hotspots" or high risk locations. 
 ![](screenshot.png)
