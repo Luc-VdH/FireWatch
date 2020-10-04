@@ -1,4 +1,7 @@
-
+/**
+ * @author Liam Watson and Luc Van Den Handel
+ * This class processes the input data to identify the wildfire hotspots
+ */
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -16,6 +19,12 @@ public class DataProcessing {
 
     public float [][] hotspots = new float[1800][900];
 
+    /**
+     * Constructor method for data processing, used to determine wildfire hotspots based on input data
+     * @param file file name (src/input/<file name>)
+     * @param in boolean array representing which data is available in the order [total carbon monoxide, temperature]
+     *           - true representing the presence of the data in the input file
+     */
     public DataProcessing(String file, boolean [] in){
         this.in=in;
         Scanner sc = null;
@@ -49,6 +58,9 @@ public class DataProcessing {
 
     }
 
+    /**
+     * Runs the identification of the hotspots populating the global 2D float array hotspots
+     */
     public void findHotspots(){
         for (int i = 0; i < 1800; i++){
             for (int j = 0; j < 900; j++){

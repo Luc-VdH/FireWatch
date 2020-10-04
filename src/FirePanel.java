@@ -1,6 +1,6 @@
-/*
+/**
 * @author Liam Watson and Luc Van Den Handel, based on class by the UCT Dept. of Computer Science
-* This class produces a panel with the greyscale image of the terrain and water, the run method continuously iterates the water flow processing to allow the simulation to function. 
+* This class produces a panel with the world image with hotspots overleyed atop it, contains a run method to host further live updating functionality.
 */
 
 
@@ -24,9 +24,9 @@ public class FirePanel extends JPanel implements Runnable{
         AtomicBoolean keepRunning = new AtomicBoolean(true);
         AtomicBoolean paused = new AtomicBoolean(true);
         
-        /*
+        /**
 	* The constructor method for a FlowPanel object
-	* @param terrain the Terrain object which stores the terrain represented by the greyscale image.
+	* @param terrain the Terrain object which stores the terrain world image and identified hotspots.
 	*/	
 	FirePanel(Terrain terrain) {
 		land=terrain;
@@ -37,7 +37,7 @@ public class FirePanel extends JPanel implements Runnable{
 				
 	}
 		
-	/*
+	/**
 	* Gets the image from the Terrain object and prints it on the panel.
 	* @param g Graphics object used for printing
 	*/		
@@ -54,8 +54,8 @@ public class FirePanel extends JPanel implements Runnable{
 			g.drawImage(land.getImage(), 0, 0, null);
 		}
 	}
-	/*
-	* This method runs continuously during program operation constantly iterating, determining the flow of the water
+	/**
+	* This method contains a framework for future additions such as live updating of the world image and hotspots
 	*/	
 	public void run() {	
 		// display loop here
@@ -86,15 +86,7 @@ public class FirePanel extends JPanel implements Runnable{
 				
 		repaint();
 	}
-	/*
-	* Used for the cases when the simulation is paused but water still needs to be painted onto the panel.
-	*/	
-	public void rePaintWater(){
-		land.deriveImage();
-		repaint();
-		//Graphics g = this.getGraphics();
-		//this.paintComponent(g);
-	}
+
 	
 	
 	

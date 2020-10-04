@@ -1,4 +1,4 @@
-/*
+/**
 @author Liam Watson and Luc Van Den Handel, based on class by the UCT Dept. of Computer Science
 This class represents a terrain modeled by a grid of tempVals s.
 */
@@ -31,7 +31,7 @@ public class Terrain {
 	ArrayList<Integer> permute;	// permuted list of integers in range [0, dimx*dimy)
 	
 	
-/*
+/**
 Gets the number of points in the grid (x*y)
 @return integer containing number of points	
 */
@@ -40,7 +40,7 @@ Gets the number of points in the grid (x*y)
 		return dimx*dimy;
 	}
 	
-/*
+/**
 Gets the x dimention of the grid.
 @return x dimention        
 */
@@ -48,7 +48,7 @@ Gets the x dimention of the grid.
 		return dimx;
 	}
 	
-/*
+/**
 Gets the y dimention of the grid
 @return y dimention       
 */
@@ -56,7 +56,7 @@ Gets the y dimention of the grid
 		return dimy;
 	}
 	
-/*
+/**
 Gets the greyscale image of the terrain with any water overlaid atop it
 @return image of terrain and water        
 */
@@ -64,7 +64,7 @@ Gets the greyscale image of the terrain with any water overlaid atop it
 		  return img;
 	}
 	
-/*
+/**
 Converts a position in the list as a 2D point 
 @param pos integer of position in list
 @param ind integer array to accept x and y values        
@@ -75,7 +75,7 @@ Converts a position in the list as a 2D point
 		ind[1] = pos % dimy; // y	
 	}
 	
-/*
+/**
 Converts and stores greyscale values of each tempVals  point and popualtes image of the terrain without any water
 */	
 	void deriveImage()
@@ -128,7 +128,7 @@ Converts and stores greyscale values of each tempVals  point and popualtes image
 	}
 	
 
-/*
+/**
 Generates a permuted list of tempVals s to randomise which points are processed by the threads
 */	
 	void genPermute() {
@@ -138,7 +138,7 @@ Generates a permuted list of tempVals s to randomise which points are processed 
 		java.util.Collections.shuffle(permute);
 	}
 	
-/*
+/**
 Gets a 2D point in the grid from a point in the permutes list 
 @param i index in list
 @param loc integer array to store x and y coords       
@@ -147,13 +147,12 @@ Gets a 2D point in the grid from a point in the permutes list
 		locate(permute.get(i), loc);
 	}
 	
-/*
+/**
 Reads a data file to optain grid of tempVals s
 @param fileName name of file to be read.        
 */
-	void readData(String fileName, String wName){
+	void readData(String fileName, boolean [] data, String wName){
 		world = new File(wName);
-		boolean [] data = {true, true};
 		DataProcessing dp = new DataProcessing(fileName, data);
 		dp.findHotspots();
 

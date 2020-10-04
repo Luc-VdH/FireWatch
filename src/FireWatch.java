@@ -1,4 +1,4 @@
-/*
+/**
 @author Liam Watson and Luc Van Den Handel, based on class by the UCT Dept. of Computer Science
 This main class hosts the main method for the running of the wildfire prediction program/
 */
@@ -24,12 +24,12 @@ public class FireWatch implements MouseListener{
 	
 	 
 
-/*
+/**
 Constructor method for a FireWatch object, takes no parameters.
 */	
 	FireWatch(){}
 	
-/*
+/**
 Sets up the user interface.
 @param frameX x-width of the frame
 @param frameY y-width of the frame
@@ -87,23 +87,31 @@ Sets up the user interface.
 		fpt.start();
 	}
 	
-/*
-Main method used to run the program, takes the name of the file containing the grid of heights as an argument
+/**
+Main method used to run the program, takes the name of the file containing the input data and booleans for the presence of CO and temperature data (more data points can be added to later versions)
 @param args string array of arguments        
 */		
 	public static void main(String[] args) {
 		Terrain landdata = new Terrain();
-		
-		// check that number of command line arguments is correct
-		if(false)
-		{
-			System.out.println("Incorrect number of command line arguments. Should have form: java -jar FireWatch.java intputfilename");
-			System.exit(0);
+		boolean [] data = new boolean [10];
+
+		if(args[1].equals("true")){
+			data[0] = true;
+		}else{
+			data[0] = false;
 		}
+
+		if (args[2].equals("true")) {
+			data[1] = true;
+		}else{
+			data[1] = false;
+		}
+
+
 				
 		// landscape information from file supplied as argument
-		// 
-		landdata.readData("src/input/output.csv", "src/input/World.jpg");
+		// args[0] = "src/input/output.csv", args[1] = true, args[2] = true
+		landdata.readData(args[0], data,  "src/input/World.jpg");
 		
 		frameX = landdata.getDimX();
 		frameY = landdata.getDimY();
@@ -113,28 +121,28 @@ Main method used to run the program, takes the name of the file containing the g
 		
 		// to do: initialise and start simulation
 	}
-/*
+/**
 Mouse clicked event - does nothing
 @param e MouseEvent        
 */	
 	public void mouseClicked(MouseEvent e) {  
                           
         }
-/*
+/**
 Mouse entered event - does nothing
 @param e MouseEvent        
 */          
         public void mouseEntered(MouseEvent e) {  
                   
         }
-/*
+/**
 Mouse exited event - does nothing
 @param e MouseEvent        
 */                 
         public void mouseExited(MouseEvent e) {
         
         }
-/*
+/**
 Mouse pressed event adds 3 to the water level of the points of a 7x7 square centered around the position of the mouse at the time of event. 
 @param e MouseEvent        
 */          
@@ -146,7 +154,7 @@ Mouse pressed event adds 3 to the water level of the points of a 7x7 square cent
                 
 
         }
-/*
+/**
 Mouse released event - does nothing
 @param e MouseEvent        
 */          
