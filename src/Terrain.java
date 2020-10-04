@@ -1,5 +1,5 @@
 /*
-@author UCT Computer Science Dept. and Luc Van Den Handel
+@author Liam Watson and Luc Van Den Handel, based on class by the UCT Dept. of Computer Science
 This class represents a terrain modeled by a grid of tempVals s.
 */
 
@@ -127,57 +127,7 @@ Converts and stores greyscale values of each tempVals  point and popualtes image
 			
 	}
 	
-/*
-Retrieves greyscale values and calculates blue value from water array to populate image with greyscale terrain with blue water overlaid atop it.
-@param water 2D array of water object to be drawn onto the terrain        
-*/	
-	void deriveWaterImage(Water [][] water){
-		 img = new BufferedImage(dimy, dimx, BufferedImage.TYPE_INT_ARGB);
-                float maxh = -10000.0f, minh = 10000.0f;
-                
-         /*       // determine range of tempVals s
-                for(int x=0; x < dimx; x++)
-                        for(int y=0; y < dimy; y++) {
-                                float h = tempVals [x][y];
-                                if(h > maxh)
-                                        maxh = h;
-                                if(h < minh)
-                                        minh = h;
-                        }
-          */      
-                for(int x=0; x < dimx; x++)
-                        for(int y=0; y < dimy; y++) {
-                                 if(water[x][y].getLevel() >0){
-                                 	
-                                 	int max = water[x][y].getLevel() * 30;
-                                 	int r = 0;
-                                 	int g = 0;
-                                 	int b = 0;
-                                 	if(max <= 510){
-                                 		if(max >= 255){
-                                 			b = 255 -(max-255);
-                                 		}else{
-                                 			b = 255;
-                                 			r = (int)((255-max)/2.0);
-                                 			g = (int)((255-max)/2.0);
-                                 		}	
-                                 	}
-                                 	
-                                 	
-                                 	     
-                                        Color blue = new Color(r,g,b);
-                                        img.setRGB(x, y, blue.getRGB());
-                                 }else{ 
-                                        // find normalized tempVals  value in range
-                                        //float val = (tempVals [x][y] - minh) / (maxh - minh);
-                                        float val = grey[x][y];
-                                        Color col = new Color(val, val, val, 1.0f);
-                                        img.setRGB(x, y, col.getRGB());
-                                 }      
-                                        
-                        }
-                        
-	}
+
 /*
 Generates a permuted list of tempVals s to randomise which points are processed by the threads
 */	

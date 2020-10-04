@@ -1,6 +1,6 @@
 /*
-@author UCT Computer Science Dept. and Luc Van Den Handel
-This main class hosts the main method for the running of the water flow simulation program/
+@author Liam Watson and Luc Van Den Handel, based on class by the UCT Dept. of Computer Science
+This main class hosts the main method for the running of the wildfire prediction program/
 */
 
 
@@ -33,7 +33,7 @@ Constructor method for a FireWatch object, takes no parameters.
 Sets up the user interface.
 @param frameX x-width of the frame
 @param frameY y-width of the frame
-@param landdata the terrain object represting the world and hotsopts.
+@param landdata the terrain object represting the world and hotspots.
 */		
 	public static void setupGUI(int frameX,int frameY,Terrain landdata){
 		
