@@ -87,7 +87,7 @@ Converts and stores greyscale values of each tempVals  point and popualtes image
 			img = ImageIO.read(new File("src/input/World.png"));
 
 		}catch (IOException e){
-			System.out.println("file error");
+			System.out.println("world image file error");
 		}
 		//System.out.println(img.getHeight());
 		//System.out.println(img.getWidth());

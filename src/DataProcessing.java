@@ -31,7 +31,7 @@ public class DataProcessing {
         try {
             sc = new Scanner(new File(file));
         } catch (FileNotFoundException e) {
-            System.out.println("file error");
+            System.out.println("input data file error");
         }
 
 
