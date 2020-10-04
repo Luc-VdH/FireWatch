@@ -15,4 +15,4 @@ Note that the supplied data must has temperature in Kelvin and CO should be dime
 
 #### Runtime
 When run the user will be shown a world map with red pixels representing "hotspots" or high risk locations. 
-![logo]: screenshot.png "screenshot"
+![]:(screenshot.png)
